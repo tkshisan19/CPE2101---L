@@ -1,0 +1,60 @@
+package LE31_Person;
+
+public class PersonClass {
+    private String name;
+    private int age;
+
+    
+    public PersonClass(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    
+    public String getName() {
+        return name;
+    }
+    public int getAge() {
+        return age;
+    }
+
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    
+    public void setPerson(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Comparison methods
+    public boolean isEqual(PersonClass other) {
+        return this.name.equals(other.name) && this.age == other.age;
+    }
+
+    public boolean hasSameName(PersonClass other) {
+        return this.name.equals(other.name);
+    }
+
+    public boolean hasSameAge(PersonClass other) {
+        return this.age == other.age;
+    }
+
+    public boolean isOlder(PersonClass other) {
+        return this.age > other.age;
+    }
+
+    public boolean isYounger(PersonClass other) {
+        return this.age < other.age;
+    }
+
+    // Display method
+    public String displayPerson() {
+        return "Name: " + name + ", Age: " + age;
+    }
+}

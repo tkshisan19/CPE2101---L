@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class LE11_ChangeDenomination {
+
+	public static void main(String[] args) {
+		int amount = getInput();
+		displayChange(amount);
+	}
+	
+	//GET USER INPUT
+	public static int getInput() {
+		Scanner keyboard = new Scanner(System.in);
+		System.out.println("Enter amount (from 1 - 99 cents): ");
+		int amount = keyboard.nextInt();
+		return amount;
+	}
+	
+	
+	//TO COMPUTE AND DISPLAY CHANGE
+	public static void displayChange(int amount) {
+		int quarters = computeQuarters(amount);
+		
+		amount = amount % 25;
+		
+		int dimes = computeDimes(amount);
+		amount = amount % 10;
+		
+		int nickels = computeNickels(amount);
+		amount = amount % 5;
+		
+		int pennies = amount;
+		
+		System.out.println("Your change is: ");
+		System.out.println(quarters + " quarters");
+		System.out.println(dimes + " dimes");
+		System.out.println(nickels + " nickels");
+		System.out.println(pennies + " pennies");
+	}
+	
+	
+	public static int computeQuarters(int amount) {
+		return amount / 25;
+	}
+	
+	public static int computeDimes(int amount) {
+		return amount / 10;
+	}
+	
+	public static int computeNickels(int amount) {
+		return amount / 5;
+	}
+	
+}

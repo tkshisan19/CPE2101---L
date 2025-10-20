@@ -1,0 +1,105 @@
+import java.util.Scanner;
+
+
+public class LE21_DayOfTheWeek {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		int year = getYear(scanner);
+		int month = getMonth(scanner);
+		int dayOfMonth = getDay(scanner, year, month);
+		
+		
+		int h = calculateDayOfWeek(year, month, dayOfMonth);
+		String dayName = getDayName(h);
+		
+		displayResult(dayName);
+		
+		scanner.close();
+	}
+	
+	
+	//GET VALID YEAR
+	public static int getYear(Scanner scanner) {
+		int year;
+		
+		do {
+			System.out.println("Enter year (e.g., 2012): ");
+			year = scanner.nextInt();
+		} while(year <= 0);
+		
+		return year;
+	}
+	
+	
+	//GET VALID MONTH
+	public static int getMonth(Scanner scanner) {
+		int month;
+		do {
+			System.out.println("Enter month: 1-12: ");
+			month = scanner.nextInt();
+		} while(month < 1 || month > 12);
+		
+		return month;
+	}
+	
+	
+	//GET VALID DAY
+	public static int getDay(Scanner scanner, int year, int month) {
+		int maxDay;
+		
+		if(month == 2) {
+			maxDay = isLeapYear(year) ? 29 : 28;
+		} else if(month == 4 || month == 6 || month == 9 || month == 11) {
+			maxDay = 30;
+		} else {
+			maxDay = 31;
+		}
+		
+		int day;
+		do {
+			System.out.println("Enter the day of the month: 1-31: ");
+			day = scanner.nextInt();
+		} while(day < 1 || day > maxDay);
+		
+		return day;
+		
+	}
+	
+	
+	//CHECK LEAP YEAR
+	public static boolean isLeapYear(int year) {
+		return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
+	}
+	
+	
+	//CALCULATION
+	public static int calculateDayOfWeek(int year, int month, int q) {
+		if(month == 1 || month == 2) {
+			year -=1;
+			month = (month == 1) ? 13 : 14;
+		}
+		
+		int j = year / 100;
+		int k = year % 100;
+		
+		return(q + 26 * (month + 1) / 10 + k + k / 4 + j / 4 + 5 * j) % 7;
+	}
+	
+	
+	//GET DAY NAME
+	public static String getDayName(int h) {
+		String[] days = {"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+		
+		return (h >= 0 && h <= 6) ? days[h] : "Invalid day";
+	}
+	
+	
+	//RESULT
+	public static void displayResult(String dayName) {
+		System.out.println("Day of the week is " + dayName);
+	}
+	
+	
+}
